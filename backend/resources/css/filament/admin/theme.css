@@ -1,0 +1,40 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+@layer base {
+    :root {
+        /* Синхронизируем палитру админки с публичным сайтом */
+        --primary-50: 238 242 255;
+        --primary-100: 224 231 255;
+        --primary-200: 199 210 254;
+        --primary-300: 165 180 252;
+        --primary-400: 129 140 248;
+        --primary-500: 99 102 241;
+        --primary-600: 79 70 229;
+        --primary-700: 67 56 202;
+        --primary-800: 55 48 163;
+        --primary-900: 49 46 129;
+
+        --filament-border-radius: 1.25rem;
+    }
+}
+
+@layer components {
+    .fi-sidebar-header {
+        @apply bg-slate-950/90 backdrop-blur-xl border-b border-white/5;
+    }
+
+    .fi-topbar {
+        @apply bg-slate-950/80 backdrop-blur-xl border-b border-white/5;
+    }
+
+    .fi-main {
+        @apply bg-gradient-to-b from-slate-950 via-slate-950 to-slate-950;
+    }
+
+    .fi-section,
+    .fi-panel {
+        @apply rounded-2xl border border-white/5 bg-slate-950/90 shadow-[0_18px_40px_rgba(15,23,42,0.85)];
+    }
+}

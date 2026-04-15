@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+:root {
+  /* Light theme tokens */
+  --color-bg: 15 23 42; /* slate-900 */
+  --color-bg-soft: 15 23 42; /* same base, softened via opacity */
+  --color-surface: 15 23 42;
+  --color-surface-elevated: 15 23 42;
+  --color-border-subtle: 51 65 85; /* slate-700 */
+  --color-text: 226 232 240; /* slate-200 */
+  --color-text-muted: 148 163 184; /* slate-400 */
+  --color-accent: 129 140 248; /* indigo-400 */
+  --color-accent-soft: 55 65 81; /* slate-700 */
+  --color-accent-strong: 79 70 229; /* indigo-600 */
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.85);
+}
+
+.dark {
+  /* Dark theme overrides (still modern, slightly higher contrast) */
+  --color-bg: 2 6 23; /* slate-950 */
+  --color-bg-soft: 15 23 42;
+  --color-surface: 15 23 42;
+  --color-surface-elevated: 15 23 42;
+  --color-border-subtle: 51 65 85;
+  --color-text: 226 232 240;
+  --color-text-muted: 148 163 184;
+  --color-accent: 129 140 248;
+  --color-accent-soft: 30 64 175; /* indigo-800 */
+  --color-accent-strong: 129 140 248;
+  --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.9);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+}
+
+.glass-surface {
+  background: radial-gradient(circle at top left, rgba(129, 140, 248, 0.25), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.2), transparent 55%),
+    rgba(15, 23, 42, 0.92);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.card-elevated {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.75);
+}
