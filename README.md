@@ -80,7 +80,10 @@ VITE_API_URL=http://127.0.0.1:8000/api
 ### Деплой на хостинг
 
 - Скрипт: **`scripts/deploy-hosting.sh`** — rsync по SSH после `npm run build`.
-- В CI задайте **`DEPLOY_USER`**, **`DEPLOY_HOST`**, **`DEPLOY_PATH`**, **`DEPLOY_SSH_KEY`** (см. комментарии в скрипте). Локально можно указать путь к ключу в `DEPLOY_SSH_KEY`.
+- **GitHub Actions:** workflow **`.github/workflows/deploy.yml`** — запускается при пуше в **`main`** и вручную (**Actions → Deploy → Run workflow**). Добавьте в репозиторий **Secrets**:
+  - `DEPLOY_USER`, `DEPLOY_HOST`, `DEPLOY_PATH`, `DEPLOY_SSH_KEY` (PEM целиком);
+  - **`VITE_API_URL`** — URL продакшен API для сборки фронта (например `https://api.example.com/api`), иначе без локального `frontend/.env` сборка не пройдёт.
+- Локально в `DEPLOY_SSH_KEY` можно указать путь к файлу ключа.
 - Подробности: **`DEPLOY.md`** (если копируете локально — файл может быть в `.gitignore`).
 
 ### Будущее расширение
