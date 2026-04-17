@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -14,6 +15,9 @@ class ContactController extends Controller
      */
     public function __invoke(ContactRequest $request): JsonResponse
     {
+        $lang = strtolower((string) $request->header('Accept-Language', 'uk'));
+        App::setLocale(str_starts_with($lang, 'en') ? 'en' : 'uk');
+
         $validated = $request->validated();
 
         $to = config('mail.from.address');
@@ -32,7 +36,7 @@ class ContactController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Ваш запрос успешно отправлен. Мы свяжемся с вами в ближайшее время.',
+            'message' => __('contact.success'),
         ]);
     }
 }

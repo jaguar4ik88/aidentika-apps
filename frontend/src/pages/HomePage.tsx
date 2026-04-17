@@ -7,13 +7,13 @@ import {
   Smartphone,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useProducts } from '../hooks/useProducts'
 import { useAbout } from '../hooks/useAbout'
 import { apiClient } from '../api/client'
+import { useLocalePrefix } from '../hooks/useLocalePrefix'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-
-const COMPANY_NAME = 'Aidentika Apps'
 
 export function HomePage() {
   return (
@@ -29,6 +29,9 @@ export function HomePage() {
 }
 
 function HeroSection() {
+  const { t } = useTranslation()
+  const company = t('companyName')
+
   return (
     <section className="grid gap-10 md:grid-cols-[3fr,2fr] md:items-center">
       <div className="space-y-8">
@@ -37,16 +40,15 @@ function HeroSection() {
             AI
           </span>
           <span className="font-medium tracking-wide">
-            {COMPANY_NAME} · Product Studio
+            {t('home.hero.badge', { company })}
           </span>
         </div>
         <div className="space-y-5">
           <h1 className="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl lg:text-5xl">
-            AI‑Driven Mobile & SaaS Development
+            {t('home.hero.title')}
           </h1>
           <p className="max-w-xl text-pretty text-sm leading-relaxed text-slate-300 sm:text-base">
-            Мы помогаем технологичным компаниям запускать мобильные продукты, SaaS‑платформы
-            и AI‑решения — от первого скоупа до масштабирования на десятки тысяч пользователей.
+            {t('home.hero.subtitle')}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-4">
@@ -54,20 +56,20 @@ function HeroSection() {
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/50 transition hover:bg-indigo-400"
           >
-            Начать проект
+            {t('home.hero.ctaPrimary')}
             <ArrowRight size={16} />
           </a>
           <a
             href="#products"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-900/70 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-indigo-400/70 hover:text-indigo-300"
           >
-            Посмотреть продукты
+            {t('home.hero.ctaSecondary')}
           </a>
         </div>
         <div className="flex flex-wrap gap-4 text-xs text-slate-400">
-          <FeaturePill>AI‑асистированные мобильные команды</FeaturePill>
-          <FeaturePill>Встроенная аналитика и монетизация</FeaturePill>
-          <FeaturePill>Готовность к мультиплатформенности</FeaturePill>
+          <FeaturePill>{t('home.hero.pill1')}</FeaturePill>
+          <FeaturePill>{t('home.hero.pill2')}</FeaturePill>
+          <FeaturePill>{t('home.hero.pill3')}</FeaturePill>
         </div>
       </div>
 
@@ -76,22 +78,22 @@ function HeroSection() {
           <div className="mb-6 flex items-center justify-between gap-4 text-xs text-slate-300">
             <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1">
               <Sparkles size={14} className="text-indigo-300" />
-              AI product pipeline
+              {t('home.hero.cardPipeline')}
             </span>
             <span className="text-[11px] text-slate-400">
-              Mobile · SaaS · AI
+              {t('home.hero.cardStack')}
             </span>
           </div>
           <div className="grid gap-4 text-xs text-slate-200">
             <div className="card-elevated flex items-center justify-between gap-4 p-4">
               <div className="space-y-1">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                  DISCOVERY
+                  {t('home.hero.discovery')}
                 </p>
-                <p className="text-sm font-medium">Product strategy & UX flow</p>
+                <p className="text-sm font-medium">{t('home.hero.discoveryTitle')}</p>
               </div>
               <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
-                Live
+                {t('home.hero.live')}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -101,10 +103,10 @@ function HeroSection() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-medium text-slate-100">
-                    Mobile & cross‑platform
+                    {t('home.hero.mobileTitle')}
                   </p>
                   <p className="text-[11px] text-slate-400">
-                    React Native, Swift, Kotlin, Expo, Capacitor.
+                    {t('home.hero.mobileDesc')}
                   </p>
                 </div>
               </div>
@@ -114,10 +116,10 @@ function HeroSection() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-medium text-slate-100">
-                    AI‑сценарии по‑умолчанию
+                    {t('home.hero.aiTitle')}
                   </p>
                   <p className="text-[11px] text-slate-400">
-                    LLM‑агенты, персонализация, генерация контента.
+                    {t('home.hero.aiDesc')}
                   </p>
                 </div>
               </div>
@@ -125,10 +127,10 @@ function HeroSection() {
             <div className="card-elevated flex items-center justify-between gap-4 p-4">
               <div className="space-y-1">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                  GROWTH
+                  {t('home.hero.growth')}
                 </p>
                 <p className="text-xs text-slate-200">
-                  А/Б‑тесты, ретеншн, монетизация и метрики.
+                  {t('home.hero.growthDesc')}
                 </p>
               </div>
               <LineChart size={20} className="text-emerald-300" />
@@ -150,78 +152,62 @@ function FeaturePill({ children }: { children: React.ReactNode }) {
 }
 
 function ServicesSection() {
-  const services = [
-    {
-      title: 'Mobile App Development',
-      description:
-        'Нативные и кросс‑платформенные приложения с продуманным онбордингом, аналитикой и ретеншном.',
-      icon: Smartphone,
-    },
-    {
-      title: 'SaaS Platforms',
-      description:
-        'B2B и B2C SaaS‑продукты с биллингом, ролями, дашбордами и API для партнеров.',
-      icon: Code2,
-    },
-    {
-      title: 'AI Integrations',
-      description:
-        'Интеграция LLM‑моделей, персональных ассистентов и генеративных сценариев в существующие продукты.',
-      icon: Brain,
-    },
-    {
-      title: 'E‑commerce Automation',
-      description:
-        'Автоматизация витрин, ценообразования, UGC‑контента и маркетинга на базе AI‑инструментов.',
-      icon: Sparkles,
-    },
-  ]
+  const { t } = useTranslation()
+  const icons = [Smartphone, Code2, Brain, Sparkles]
+  const items = t('home.services.items', {
+    returnObjects: true,
+  }) as { title: string; description: string }[]
 
   return (
     <section id="services" className="space-y-6">
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-50 sm:text-xl">
-            Что мы делаем
+            {t('home.services.title')}
           </h2>
           <p className="mt-1 text-sm text-slate-400">
-            Концентрируемся на продуктах, где AI и мобильность — ядро, а не надстройка.
+            {t('home.services.subtitle')}
           </p>
         </div>
       </div>
       <div className="grid gap-5 md:grid-cols-2">
-        {services.map((service) => (
-          <article
-            key={service.title}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60 p-[1px] transition hover:border-indigo-400/70"
-          >
-            <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-indigo-500/25 via-transparent to-fuchsia-500/20 opacity-0 transition group-hover:opacity-100" />
-            <div className="relative flex h-full flex-col gap-4 rounded-[1rem] bg-slate-950/80 p-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-300">
-                  <service.icon size={18} />
+        {items.map((service, index) => {
+          const Icon = icons[index] ?? Smartphone
+          return (
+            <article
+              key={service.title}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60 p-[1px] transition hover:border-indigo-400/70"
+            >
+              <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-indigo-500/25 via-transparent to-fuchsia-500/20 opacity-0 transition group-hover:opacity-100" />
+              <div className="relative flex h-full flex-col gap-4 rounded-[1rem] bg-slate-950/80 p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-300">
+                    <Icon size={18} />
+                  </div>
+                  <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-300">
+                    {t('home.services.badge')}
+                  </span>
                 </div>
-                <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-300">
-                  Product‑ready
-                </span>
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-slate-50">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs leading-relaxed text-slate-300">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-slate-50">
-                  {service.title}
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-300">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
     </section>
   )
 }
 
 function ProductsSection() {
+  const { t } = useTranslation()
+  const company = t('companyName')
   const { data, loading, error } = useProducts()
 
   return (
@@ -229,10 +215,10 @@ function ProductsSection() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-50 sm:text-xl">
-            Продукты {COMPANY_NAME}
+            {t('home.products.title', { company })}
           </h2>
           <p className="mt-1 text-sm text-slate-400">
-            Собственные продукты, которые демонстрируют наш подход к дизайну, AI и мобильным сценариям.
+            {t('home.products.subtitle')}
           </p>
         </div>
       </div>
@@ -247,7 +233,7 @@ function ProductsSection() {
         </div>
       )}
       {!loading && error && (
-        <p className="text-xs text-amber-300">{error}</p>
+        <p className="text-xs text-amber-300">{t(error)}</p>
       )}
       {!loading && !error && data && (
         <div className="grid gap-5 md:grid-cols-3">
@@ -258,7 +244,7 @@ function ProductsSection() {
             >
               <div className="space-y-3">
                 <p className="text-xs font-medium text-indigo-300">
-                  {product.subtitle || 'Internal product'}
+                  {product.subtitle || t('home.products.subtitleFallback')}
                 </p>
                 <h3 className="text-sm font-semibold text-slate-50">
                   {product.title}
@@ -276,7 +262,7 @@ function ProductsSection() {
                   }
                 />
                 <span className="text-[11px] text-slate-400">
-                  API‑first · Multi‑platform
+                  {t('home.products.apiTag')}
                 </span>
               </div>
             </article>
@@ -288,34 +274,37 @@ function ProductsSection() {
 }
 
 function StatusBadge({ status }: { status: 'active' | 'coming_soon' }) {
+  const { t } = useTranslation()
   if (status === 'active') {
     return (
       <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-        Active product
+        {t('home.products.statusActive')}
       </span>
     )
   }
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2.5 py-1 text-[11px] font-medium text-amber-300">
       <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-      Coming soon
+      {t('home.products.statusSoon')}
     </span>
   )
 }
 
 function AboutSection() {
+  const { t } = useTranslation()
+  const company = t('companyName')
   const { data, loading, error } = useAbout()
 
   return (
     <section id="about" className="grid gap-8 md:grid-cols-[3fr,2fr] md:items-center">
       <div className="space-y-4">
         <h2 className="text-lg font-semibold text-slate-50 sm:text-xl">
-          {data?.headline || 'Студия продуктового уровня'}
+          {data?.headline || t('home.about.headlineFallback')}
         </h2>
         <p className="text-sm leading-relaxed text-slate-300">
           {data?.subheadline ||
-            `${COMPANY_NAME} — это небольшая, но опытная команда продакт‑менеджеров, дизайнеров и инженеров, которые работали с международными стартапами и корпоративными командами.`}
+            t('home.about.subheadlineFallback', { company })}
         </p>
         {data?.content && (
           <p className="text-sm leading-relaxed text-slate-300">
@@ -323,25 +312,27 @@ function AboutSection() {
           </p>
         )}
         <div className="grid gap-3 text-xs text-slate-300 sm:grid-cols-3">
-          <Kpi label="Time‑to‑market" value="6–12 недель" />
-          <Kpi label="Platforms" value="Web · iOS · Android" />
-          <Kpi label="Focus" value="AI · SaaS · Mobile" />
+          <Kpi label={t('home.about.kpi1Label')} value={t('home.about.kpi1Value')} />
+          <Kpi label={t('home.about.kpi2Label')} value={t('home.about.kpi2Value')} />
+          <Kpi label={t('home.about.kpi3Label')} value={t('home.about.kpi3Value')} />
         </div>
       </div>
       <div className="card-elevated space-y-4 p-5">
         <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-          ПОДХОД
+          {t('home.about.approach')}
         </p>
-        {loading && <p className="text-xs text-slate-400">Загружаем описание...</p>}
+        {loading && (
+          <p className="text-xs text-slate-400">{t('home.about.loading')}</p>
+        )}
         {!loading && error && (
-          <p className="text-xs text-amber-300">{error}</p>
+          <p className="text-xs text-amber-300">{t(error)}</p>
         )}
         {!loading && !error && (
           <ul className="space-y-3 text-xs text-slate-300">
-            <li>· API‑first архитектура для масштабирования и интеграций.</li>
-            <li>· Единый дизайн‑язык между сайтом, админкой и продуктом.</li>
-            <li>· Набор готовых модулей: аутентификация, биллинг, админ‑панель, аналитика.</li>
-            <li>· Работа по спринтам с прозрачными демо и метриками.</li>
+            <li>{t('home.about.bullet1')}</li>
+            <li>{t('home.about.bullet2')}</li>
+            <li>{t('home.about.bullet3')}</li>
+            <li>{t('home.about.bullet4')}</li>
           </ul>
         )}
       </div>
@@ -359,54 +350,57 @@ function Kpi({ label, value }: { label: string; value: string }) {
 }
 
 function BlogPreviewSection() {
+  const { t } = useTranslation()
+  const prefix = useLocalePrefix()
+
   return (
     <section className="space-y-4">
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-50 sm:text-xl">
-            Из блога
+            {t('home.blogPreview.title')}
           </h2>
           <p className="mt-1 text-sm text-slate-400">
-            Разборы продуктовых запусков, AI‑кейсы и инфраструктура под мобильные продукты.
+            {t('home.blogPreview.subtitle')}
           </p>
         </div>
         <Link
-          to="/blog"
+          to={`${prefix}/blog`}
           className="hidden items-center gap-2 text-xs font-medium text-indigo-300 hover:text-indigo-200 md:inline-flex"
         >
-          Читать блог
+          {t('home.blogPreview.link')}
           <ArrowRight size={14} />
         </Link>
       </div>
       <div className="rounded-2xl border border-dashed border-white/15 bg-slate-950/60 p-5 text-xs text-slate-400">
-        Блог подключён к API и админ‑панели. После создания первых статей в админке они
-        появятся здесь автоматически.
+        {t('home.blogPreview.placeholder')}
       </div>
     </section>
   )
 }
 
 function ContactSection() {
+  const { t } = useTranslation()
+
   return (
     <section id="contact" className="grid gap-8 md:grid-cols-[3fr,2fr] md:items-start">
       <div className="space-y-4">
         <h2 className="text-lg font-semibold text-slate-50 sm:text-xl">
-          Обсудить потенциальный проект
+          {t('home.contact.title')}
         </h2>
         <p className="text-sm text-slate-300">
-          Расскажите о задаче, сроках и целевой аудитории — мы вернёмся с первым предложением
-          по архитектуре и дорожной карте.
+          {t('home.contact.subtitle')}
         </p>
         <ContactForm />
       </div>
       <div className="space-y-3 text-xs text-slate-300">
         <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-          Формат работы
+          {t('home.contact.format')}
         </p>
         <ul className="space-y-2">
-          <li>· Discovery‑спринт 1–2 недели.</li>
-          <li>· Запуск MVP за 6–12 недель.</li>
-          <li>· Поддержка и развитие продукта по подписке.</li>
+          <li>{t('home.contact.format1')}</li>
+          <li>{t('home.contact.format2')}</li>
+          <li>{t('home.contact.format3')}</li>
         </ul>
       </div>
     </section>
@@ -414,6 +408,8 @@ function ContactSection() {
 }
 
 function ContactForm() {
+  const { t } = useTranslation()
+  const company = t('companyName')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState<string | null>(null)
@@ -426,13 +422,15 @@ function ContactForm() {
     setError(null)
 
     try {
-      await apiClient.post('/contact', form)
-      setSuccess('Запрос успешно отправлен. Мы вернёмся с ответом в ближайшее время.')
+      const response = await apiClient.post<{ message?: string }>('/contact', form)
+      setSuccess(
+        response.data?.message ?? t('home.contact.success'),
+      )
       setForm({ name: '', email: '', message: '' })
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Failed to send contact form', err)
-      setError('Не удалось отправить форму. Попробуйте ещё раз чуть позже.')
+      setError(t('home.contact.error'))
     } finally {
       setSubmitting(false)
     }
@@ -446,7 +444,7 @@ function ContactForm() {
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="space-y-1.5">
           <label htmlFor="name" className="text-xs text-slate-200">
-            Имя
+            {t('home.contact.formName')}
           </label>
           <input
             id="name"
@@ -454,12 +452,12 @@ function ContactForm() {
             value={form.name}
             onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
             className="h-9 w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 text-xs text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-indigo-400/80"
-            placeholder="Как к вам обращаться?"
+            placeholder={t('home.contact.placeholderName')}
           />
         </div>
         <div className="space-y-1.5">
           <label htmlFor="email" className="text-xs text-slate-200">
-            Email
+            {t('home.contact.formEmail')}
           </label>
           <input
             id="email"
@@ -474,7 +472,7 @@ function ContactForm() {
       </div>
       <div className="space-y-1.5">
         <label htmlFor="message" className="text-xs text-slate-200">
-          Кратко опишите задачу
+          {t('home.contact.formMessage')}
         </label>
         <textarea
           id="message"
@@ -483,7 +481,7 @@ function ContactForm() {
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
           className="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-xs text-slate-100 outline-none ring-0 transition placeholder:text-slate-500 focus:border-indigo-400/80"
-          placeholder={`Продукт, сроки, команда, ожидания от ${COMPANY_NAME}...`}
+          placeholder={t('home.contact.placeholderMessage', { company })}
         />
       </div>
       <button
@@ -491,7 +489,7 @@ function ContactForm() {
         disabled={submitting}
         className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-indigo-500 px-4 py-2.5 text-xs font-medium text-white shadow-lg shadow-indigo-500/50 transition hover:bg-indigo-400"
       >
-        {submitting ? 'Отправляем...' : 'Отправить запрос'}
+        {submitting ? t('home.contact.submitting') : t('home.contact.submit')}
         <ArrowRight size={14} />
       </button>
       {success && (
@@ -507,4 +505,3 @@ function ContactForm() {
     </form>
   )
 }
-

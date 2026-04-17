@@ -45,7 +45,7 @@ export function useProducts(): UseProductsState {
         setState({
           data: null,
           loading: false,
-          error: 'Не удалось загрузить список продуктов.',
+          error: 'errors.loadProducts',
         })
       })
 

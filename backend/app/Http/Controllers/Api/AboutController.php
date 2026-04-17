@@ -17,9 +17,9 @@ class AboutController extends Controller
 
         if (! $about) {
             $about = new About([
-                'headline' => 'AI-Driven Product Studio',
-                'subheadline' => 'Мы помогаем компаниям запускать мобильные и SaaS-продукты с использованием AI.',
-                'content' => "Aidentika Apps — продуктовая студия, которая проектирует API-first архитектуру, мобильные клиенты и админ-панели для масштабируемых AI и SaaS решений.",
+                'headline' => 'AI‑driven продуктова студія',
+                'subheadline' => 'Допомагаємо компаніям запускати мобільні та SaaS‑продукти з використанням AI.',
+                'content' => 'Aidentika Apps — продуктова студія, що проєктує API‑first архітектуру, мобільні клієнти та адмін‑панелі для масштабованих AI та SaaS рішень.',
             ]);
         }
 

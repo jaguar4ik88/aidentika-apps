@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { useTranslation } from 'react-i18next'
 import { usePost } from '../hooks/usePosts'
 
 export function BlogPostPage() {
+  const { t } = useTranslation()
   const { slug } = useParams<{ slug: string }>()
   const { data, loading, error } = usePost(slug)
 
@@ -19,13 +21,13 @@ export function BlogPostPage() {
         </div>
       )}
       {!loading && error && (
-        <p className="text-sm text-amber-300">{error}</p>
+        <p className="text-sm text-amber-300">{t(error)}</p>
       )}
       {!loading && !error && data && (
         <>
           <div className="space-y-2">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
-              Статья
+              {t('blog.postEyebrow')}
             </p>
             <h1 className="text-2xl font-semibold text-slate-50 sm:text-3xl">
               {data.title}
@@ -42,4 +44,3 @@ export function BlogPostPage() {
     </section>
   )
 }
-

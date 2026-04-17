@@ -79,8 +79,9 @@ VITE_API_URL=http://127.0.0.1:8000/api
 
 ### Деплой на хостинг
 
-- Шаблон инструкции: **`DEPLOY.example.md`** (скопируйте в `DEPLOY.md` для локальных правок — `DEPLOY.md` в `.gitignore`).
-- Скрипт: **`scripts/deploy-hosting.sh`** (rsync по SSH после сборки фронта).
+- Скрипт: **`scripts/deploy-hosting.sh`** — rsync по SSH после `npm run build`.
+- В CI задайте **`DEPLOY_USER`**, **`DEPLOY_HOST`**, **`DEPLOY_PATH`**, **`DEPLOY_SSH_KEY`** (см. комментарии в скрипте). Локально можно указать путь к ключу в `DEPLOY_SSH_KEY`.
+- Подробности: **`DEPLOY.md`** (если копируете локально — файл может быть в `.gitignore`).
 
 ### Будущее расширение
 

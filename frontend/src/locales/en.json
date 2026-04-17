@@ -1,0 +1,128 @@
+{
+  "companyName": "Aidentika Apps",
+  "layout": {
+    "navServices": "Services",
+    "navProducts": "Products",
+    "navAbout": "About",
+    "navBlog": "Blog",
+    "navContact": "Contact",
+    "themeToggle": "Toggle theme",
+    "ctaProject": "Start a project",
+    "footerTagline": "AI‑driven mobile & SaaS product studio",
+    "langUk": "UA",
+    "langEn": "EN"
+  },
+  "home": {
+    "hero": {
+      "badge": "{{company}} · Product Studio",
+      "title": "AI‑Driven Mobile & SaaS Development",
+      "subtitle": "We help tech companies ship mobile apps, SaaS platforms, and AI solutions — from first scope to scaling to tens of thousands of users.",
+      "ctaPrimary": "Start a project",
+      "ctaSecondary": "View products",
+      "pill1": "AI‑assisted mobile teams",
+      "pill2": "Built‑in analytics & monetization",
+      "pill3": "Multi‑platform ready",
+      "cardPipeline": "AI product pipeline",
+      "cardStack": "Mobile · SaaS · AI",
+      "discovery": "DISCOVERY",
+      "discoveryTitle": "Product strategy & UX flow",
+      "live": "Live",
+      "mobileTitle": "Mobile & cross‑platform",
+      "mobileDesc": "React Native, Swift, Kotlin, Expo, Capacitor.",
+      "aiTitle": "AI scenarios by default",
+      "aiDesc": "LLM agents, personalization, content generation.",
+      "growth": "GROWTH",
+      "growthDesc": "A/B tests, retention, monetization & metrics."
+    },
+    "services": {
+      "title": "What we do",
+      "subtitle": "We focus on products where AI and mobility are core, not an afterthought.",
+      "badge": "Product‑ready",
+      "items": [
+        {
+          "title": "Mobile App Development",
+          "description": "Native and cross‑platform apps with thoughtful onboarding, analytics, and retention."
+        },
+        {
+          "title": "SaaS Platforms",
+          "description": "B2B and B2C SaaS with billing, roles, dashboards, and partner APIs."
+        },
+        {
+          "title": "AI Integrations",
+          "description": "LLM integration, personal assistants, and generative flows in existing products."
+        },
+        {
+          "title": "E‑commerce Automation",
+          "description": "Storefront automation, pricing, UGC, and marketing powered by AI."
+        }
+      ]
+    },
+    "products": {
+      "title": "{{company}} products",
+      "subtitle": "Our own products that showcase our approach to design, AI, and mobile scenarios.",
+      "subtitleFallback": "Internal product",
+      "apiTag": "API‑first · Multi‑platform",
+      "statusActive": "Active product",
+      "statusSoon": "Coming soon"
+    },
+    "about": {
+      "headlineFallback": "Product‑grade studio",
+      "subheadlineFallback": "{{company}} is a small but experienced team of product managers, designers, and engineers who have worked with international startups and enterprise teams.",
+      "kpi1Label": "Time‑to‑market",
+      "kpi1Value": "6–12 weeks",
+      "kpi2Label": "Platforms",
+      "kpi2Value": "Web · iOS · Android",
+      "kpi3Label": "Focus",
+      "kpi3Value": "AI · SaaS · Mobile",
+      "approach": "APPROACH",
+      "loading": "Loading description...",
+      "bullet1": "· API‑first architecture for scale and integrations.",
+      "bullet2": "· One design language across site, admin, and product.",
+      "bullet3": "· Ready modules: auth, billing, admin, analytics.",
+      "bullet4": "· Sprint‑based delivery with transparent demos and metrics."
+    },
+    "blogPreview": {
+      "title": "From the blog",
+      "subtitle": "Product launches, AI case studies, and infrastructure for mobile products.",
+      "link": "Read the blog",
+      "placeholder": "The blog is connected to the API and admin. After you publish posts in the admin panel, they will appear here automatically."
+    },
+    "contact": {
+      "title": "Discuss a potential project",
+      "subtitle": "Tell us about the task, timeline, and audience — we’ll reply with a first take on architecture and roadmap.",
+      "format": "How we work",
+      "format1": "· Discovery sprint 1–2 weeks.",
+      "format2": "· MVP launch in 6–12 weeks.",
+      "format3": "· Ongoing product support on subscription.",
+      "formName": "Name",
+      "formEmail": "Email",
+      "formMessage": "Briefly describe the task",
+      "placeholderName": "How should we address you?",
+      "placeholderEmail": "founder@company.com",
+      "placeholderMessage": "Product, timeline, team, expectations from {{company}}...",
+      "submit": "Send request",
+      "submitting": "Sending...",
+      "success": "Request sent successfully. We’ll get back to you soon.",
+      "error": "Could not send the form. Please try again later."
+    }
+  },
+  "blog": {
+    "listEyebrow": "Blog",
+    "listTitle": "Launches, AI case studies & architecture",
+    "listSubtitle": "Deep dives into our products, architecture notes, and practical tips on mobile, SaaS, and AI.",
+    "empty": "No articles yet. Once you create posts in the admin panel, they will appear here automatically.",
+    "postEyebrow": "Article"
+  },
+  "notFound": {
+    "eyebrow": "404 · Page not found",
+    "title": "We couldn’t find anything at this address",
+    "subtitle": "The page may have moved or the URL has a typo. Go back home and start from your product description.",
+    "cta": "Back to home"
+  },
+  "errors": {
+    "loadProducts": "Could not load products.",
+    "loadAbout": "Could not load the About section.",
+    "loadPosts": "Could not load posts.",
+    "loadPost": "Could not load the article."
+  }
+}

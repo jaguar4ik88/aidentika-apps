@@ -48,7 +48,7 @@ export function usePosts(): BaseState<PostSummary[]> {
         setState({
           data: null,
           loading: false,
-          error: 'Не удалось загрузить статьи.',
+          error: 'errors.loadPosts',
         })
       })
 
@@ -90,7 +90,7 @@ export function usePost(slug: string | undefined): BaseState<PostDetail> {
         setState({
           data: null,
           loading: false,
-          error: 'Не удалось загрузить статью.',
+          error: 'errors.loadPost',
         })
       })
 

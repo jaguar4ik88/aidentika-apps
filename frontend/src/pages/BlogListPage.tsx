@@ -1,21 +1,24 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { usePosts } from '../hooks/usePosts'
+import { useLocalePrefix } from '../hooks/useLocalePrefix'
 
 export function BlogListPage() {
+  const { t } = useTranslation()
+  const prefix = useLocalePrefix()
   const { data, loading, error } = usePosts()
 
   return (
     <section className="space-y-6">
       <header className="space-y-2">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
-          Блог
+          {t('blog.listEyebrow')}
         </p>
         <h1 className="text-2xl font-semibold text-slate-50 sm:text-3xl">
-          Запуски, AI‑кейсы и архитектура
+          {t('blog.listTitle')}
         </h1>
         <p className="max-w-2xl text-sm text-slate-300">
-          Здесь будут появляться разборы наших продуктов, заметки по архитектуре и
-          практические заметки о связке мобильных приложений, SaaS и AI‑сервисов.
+          {t('blog.listSubtitle')}
         </p>
       </header>
       {loading && (
@@ -29,12 +32,11 @@ export function BlogListPage() {
         </div>
       )}
       {!loading && error && (
-        <p className="text-sm text-amber-300">{error}</p>
+        <p className="text-sm text-amber-300">{t(error)}</p>
       )}
       {!loading && !error && (!data || data.length === 0) && (
         <div className="rounded-2xl border border-dashed border-white/15 bg-slate-950/60 p-5 text-sm text-slate-300">
-          Пока здесь нет статей. Как только вы создадите первые публикации в админ‑панели,
-          они появятся в этом списке автоматически.
+          {t('blog.empty')}
         </div>
       )}
       {!loading && !error && data && data.length > 0 && (
@@ -44,7 +46,10 @@ export function BlogListPage() {
               key={post.id}
               className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 transition hover:border-indigo-400/70"
             >
-              <Link to={`/blog/${post.slug}`} className="space-y-2">
+              <Link
+                to={`${prefix}/blog/${post.slug}`}
+                className="space-y-2"
+              >
                 <h2 className="text-sm font-semibold text-slate-50">
                   {post.title}
                 </h2>
@@ -59,4 +64,3 @@ export function BlogListPage() {
     </section>
   )
 }
-

@@ -43,7 +43,7 @@ export function useAbout(): UseAboutState {
         setState({
           data: null,
           loading: false,
-          error: 'Не удалось загрузить блок «О студии».',
+          error: 'errors.loadAbout',
         })
       })
 
