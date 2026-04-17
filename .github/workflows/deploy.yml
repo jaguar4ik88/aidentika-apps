@@ -1,6 +1,6 @@
 # Деплой на сервер по SSH (rsync) при пуше в main.
-# Secrets: DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_SSH_KEY
-# Рекомендуется также: VITE_API_URL (URL API для продакшен-сборки фронта, например https://api.example.com/api)
+# Secrets: DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_SSH_KEY, VITE_API_URL
+# Локальный frontend/.env в CI недоступен — URL API нужно задать в GitHub (Secret или Variable).
 
 name: Deploy
 
@@ -27,13 +27,28 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
+      # В раннере нет вашего локального frontend/.env — собираем его из Secret или Variable.
+      - name: Write frontend/.env for production build
+        env:
+          VITE_SECRET: ${{ secrets.VITE_API_URL }}
+          VITE_VAR: ${{ vars.VITE_API_URL }}
+        run: |
+          set -euo pipefail
+          URL="${VITE_SECRET:-}"
+          if [ -z "$URL" ]; then URL="${VITE_VAR:-}"; fi
+          if [ -z "$URL" ]; then
+            echo "::error::Задайте в репозитории Secret VITE_API_URL или Settings → Variables → VITE_API_URL"
+            echo "::error::Пример: https://aidentika.com.ua/api (локальный frontend/.env в CI не используется)"
+            exit 1
+          fi
+          printf 'VITE_API_URL=%s\n' "$URL" > frontend/.env
+
       - name: Run deploy script
         env:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: |
           chmod +x scripts/deploy-hosting.sh
           ./scripts/deploy-hosting.sh
