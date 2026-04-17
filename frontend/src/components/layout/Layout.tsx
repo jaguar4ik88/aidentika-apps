@@ -38,7 +38,7 @@ export function Layout({ children }: LayoutProps) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-0">
           <Link to={homePath} className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-fuchsia-500 text-white shadow-lg shadow-indigo-500/40">
-              <span className="text-lg font-semibold">A</span>
+              <span className="text-sm font-semibold tracking-tight">AA</span>
             </div>
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-medium tracking-[0.18em] text-slate-400">
