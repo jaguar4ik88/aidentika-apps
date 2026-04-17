@@ -1,6 +1,6 @@
 # Деплой на сервер по SSH (rsync) при пуше в main.
-# Secrets: DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_SSH_KEY
-# Рекомендуется также: VITE_API_URL (URL API для продакшен-сборки фронта, например https://api.example.com/api)
+# Secrets: DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_SSH_KEY, VITE_API_URL
+# При необходимости URL можно задать Variable VITE_API_URL (если секрет пустой).
 
 name: Deploy
 
@@ -33,7 +33,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL || vars.VITE_API_URL }}
         run: |
           chmod +x scripts/deploy-hosting.sh
           ./scripts/deploy-hosting.sh
