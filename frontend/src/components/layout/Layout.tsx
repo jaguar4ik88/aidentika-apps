@@ -42,10 +42,10 @@ export function Layout({ children }: LayoutProps) {
             </div>
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-medium tracking-[0.18em] text-slate-400">
-                {brandFirst.toUpperCase()}
+                STUDIO
               </span>
               <span className="text-base font-semibold text-slate-50">
-                {brandRest}
+              {brandFirst} {brandRest}
               </span>
             </div>
           </Link>
