@@ -1,3 +1,6 @@
+# Корень сайта: React (index.html), не Laravel welcome
+DirectoryIndex index.html index.php
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -18,8 +21,13 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Laravel: API, Filament, Livewire, health (React SPA — всё остальное на index.html)
+    RewriteCond %{REQUEST_URI} ^/(api|admin|filament|livewire|sanctum)(/|$) [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/up$ [NC]
+    RewriteRule ^ index.php [L]
+
+    # SPA (client-side routes: /en/..., etc.)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    RewriteRule ^ index.html [L]
 </IfModule>
