@@ -61,8 +61,11 @@ if [[ -n "${VITE_API_URL}" ]]; then
   export VITE_API_URL
 fi
 if [[ ! -f .env ]]; then
-  echo "Нет frontend/.env — создайте из .env.example и задайте VITE_API_URL для продакшена." >&2
-  exit 1
+  if [[ -z "${VITE_API_URL:-}" ]]; then
+    echo "Нет frontend/.env и не задан VITE_API_URL — создайте .env из .env.example или экспортируйте VITE_API_URL (в CI добавьте secret)." >&2
+    exit 1
+  fi
+  echo "(CI) сборка без frontend/.env, используется VITE_API_URL из окружения"
 fi
 npm ci
 npm run build
