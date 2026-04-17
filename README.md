@@ -82,7 +82,7 @@ VITE_API_URL=http://127.0.0.1:8000/api
 - Скрипт: **`scripts/deploy-hosting.sh`** — rsync по SSH после `npm run build`.
 - **GitHub Actions:** workflow **`.github/workflows/deploy.yml`** — запускается при пуше в **`main`** и вручную (**Actions → Deploy → Run workflow**). Добавьте в репозиторий **Secrets**:
   - `DEPLOY_USER`, `DEPLOY_HOST`, `DEPLOY_PATH`, `DEPLOY_SSH_KEY` (PEM целиком);
-  - **`VITE_API_URL`** — URL продакшен API для сборки (например `https://aidentika.com.ua/api`). Локальный `frontend/.env` **в CI не виден** — задайте тот же URL в **GitHub → Settings → Secrets and variables** как **Secret** `VITE_API_URL` или **Variable** `VITE_API_URL`.
+  - **`VITE_API_URL`** — Secret (или Variable) с URL продакшен API для `npm run build` в Actions; передаётся в `deploy-hosting.sh` через `env` (как в локальном `frontend/.env`).
 - Локально в `DEPLOY_SSH_KEY` можно указать путь к файлу ключа.
 - Подробности: **`DEPLOY.md`** (если копируете локально — файл может быть в `.gitignore`).
 
