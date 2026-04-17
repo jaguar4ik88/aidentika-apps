@@ -91,7 +91,18 @@ rsync -avz \
   "$ROOT/backend/" \
   "${RSYNC_TARGET}:${REMOTE_ROOT}/backend/"
 
-echo "==> Готово. На сервере выполните (после деплоя при необходимости):"
+echo "==> Сборка SPA в backend/public (Document Root — сайт + API с одного домена)"
+rsync -avz \
+  -e "${RSYNC_RSH[*]}" \
+  "$ROOT/frontend/dist/index.html" \
+  "${RSYNC_TARGET}:${REMOTE_ROOT}/backend/public/index.html"
+rsync -avz --delete \
+  -e "${RSYNC_RSH[*]}" \
+  "$ROOT/frontend/dist/assets/" \
+  "${RSYNC_TARGET}:${REMOTE_ROOT}/backend/public/assets/"
+
+echo "==> Готово. dist уже загружен в ${REMOTE_ROOT}/backend/public — отдельно копировать не нужно."
+echo "==> На сервере (PHP/Laravel, не про фронт) при необходимости:"
 cat <<EOF
 
   ssh ${RSYNC_TARGET}
